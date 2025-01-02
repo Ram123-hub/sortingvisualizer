@@ -99,25 +99,39 @@ async function selectionSort() {
 }
 
 // Insertion Sort
+// Insertion Sort
 async function insertionSort() {
     const bars = document.getElementsByClassName('array-bar');
+    
     for (let i = 1; i < array.length; i++) {
         let key = array[i];
         let j = i - 1;
+
+        // Highlight the current key being compared
         bars[i].classList.add('compare');
+
+        // Move elements that are greater than `key` one position ahead
         while (j >= 0 && array[j] > key) {
             bars[j].classList.add('compare');
+            
             array[j + 1] = array[j];
             bars[j + 1].style.height = `${array[j + 1]}px`;
-            j--;
+
             await sleep(delay);
-            bars[j + 1].classList.remove('compare');
+
+            bars[j].classList.remove('compare');
+            j--;
         }
+
+        // Insert the key into its correct position
         array[j + 1] = key;
         bars[j + 1].style.height = `${array[j + 1]}px`;
+
+        // Remove highlight from the key after placement
         bars[i].classList.remove('compare');
     }
 }
+
 
 // Merge Sort
 // Merge Sort
